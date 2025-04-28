@@ -1,0 +1,9 @@
+### 測試雲端 Predict API
+POST https://sales-predictor-mb8q.onrender.com/api/predict/
+Content-Type: application/json
+
+{
+  "organic": 120,
+  "a_campaign": 50,
+  "b_campaign": 30
+}
