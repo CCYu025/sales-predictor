@@ -1,5 +1,6 @@
 ### 測試雲端 Predict API
-POST https://sales-predictor-mb8q.onrender.com/api/predict/
+##POST https://sales-predictor-mb8q.onrender.com/api/predict/
+POST http://127.0.0.1:8000/predict/
 Content-Type: application/json
 
 {

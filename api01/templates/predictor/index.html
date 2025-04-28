@@ -8,6 +8,7 @@
 <body>
     <img src="{% static 'predictor/logo.jpg' %}" alt="Logo" width="300">
     <h1>銷售預測小工具</h1>
+
     <form id="predict-form">
         <label>Organic: <input type="number" id="organic" required></label><br><br>
         <label>A Campaign: <input type="number" id="a_campaign" required></label><br><br>
@@ -22,14 +23,14 @@
         const result = document.getElementById('result');
 
         form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // 不要刷新頁面
+            e.preventDefault(); // 不刷新頁面
 
             const organic = document.getElementById('organic').value;
             const a_campaign = document.getElementById('a_campaign').value;
             const b_campaign = document.getElementById('b_campaign').value;
 
             try {
-                const response = await fetch('https://sales-predictor-mb8q.onrender.com/api/predict/', {
+                const response = await fetch('/api/predict/', {   // ⭐⭐ 注意這裡：相對路徑
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
