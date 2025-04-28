@@ -11,7 +11,7 @@ urlpatterns = [
 ]
 
 # 建立 路由器
-router = routers.DefaultRouter()
+# router = routers.DefaultRouter()
 # 註冊 網址 對硬 視圖
 # 127.0.0.1:8000/api 由 myproject/urls.py 負責設定
 # 127.0.0.1:8000/api/products
