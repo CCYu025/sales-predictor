@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect  # ⭐⭐ 加這行
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api01.urls')),
+    path('', lambda request: redirect('api/', permanent=False)),  # ⭐⭐ 加這行！根目錄自動跳轉
 ]
