@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>銷售預測小工具</title>
+</head>
+<body>
+    <img src="{% static 'predictor/logo.jpg' %}" alt="Logo" width="300">
+    <h1>銷售預測小工具</h1>
+    <form id="predict-form">
+        <label>Organic: <input type="number" id="organic" required></label><br><br>
+        <label>A Campaign: <input type="number" id="a_campaign" required></label><br><br>
+        <label>B Campaign: <input type="number" id="b_campaign" required></label><br><br>
+        <button type="submit">預測銷售量</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        const form = document.getElementById('predict-form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // 不要刷新頁面
+
+            const organic = document.getElementById('organic').value;
+            const a_campaign = document.getElementById('a_campaign').value;
+            const b_campaign = document.getElementById('b_campaign').value;
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/predict/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        organic: organic,
+                        a_campaign: a_campaign,
+                        b_campaign: b_campaign
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    result.innerText = `預測銷售量是：${data.predicted_sales}`;
+                } else {
+                    result.innerText = `錯誤：${data.error}`;
+                }
+            } catch (error) {
+                result.innerText = `發生錯誤：${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
