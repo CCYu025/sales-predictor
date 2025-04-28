@@ -1,8 +1,3 @@
-# from django.shortcuts import render
-# import json
-# import requests
-# from django.http import JsonResponse
-# from django.views.decorators.csrf import csrf_exempt
 
 
 # 載入 Python 庫
