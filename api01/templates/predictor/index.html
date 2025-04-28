@@ -4,15 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <title>銷售預測小工具</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        img {
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        form {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #1a73e8;
+        }
+    </style>
 </head>
 <body>
-    <img src="{% static 'predictor/logo.jpg' %}" alt="Logo" width="300">
+    <img src="{% static 'predictor/logo.jpg' %}" alt="Logo" width="250">
     <h1>銷售預測小工具</h1>
 
     <form id="predict-form">
-        <label>Organic: <input type="number" id="organic" required></label><br><br>
-        <label>A Campaign: <input type="number" id="a_campaign" required></label><br><br>
-        <label>B Campaign: <input type="number" id="b_campaign" required></label><br><br>
+        <label>Organic:
+            <input type="number" id="organic" required>
+        </label>
+        <label>A Campaign:
+            <input type="number" id="a_campaign" required>
+        </label>
+        <label>B Campaign:
+            <input type="number" id="b_campaign" required>
+        </label>
         <button type="submit">預測銷售量</button>
     </form>
 
@@ -30,7 +101,7 @@
             const b_campaign = document.getElementById('b_campaign').value;
 
             try {
-                const response = await fetch('/api/predict/', {   // ⭐⭐ 注意這裡：相對路徑
+                const response = await fetch('/api/predict/', {  // 相對路徑：本地和Render都適用
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
