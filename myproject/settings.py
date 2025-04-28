@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--wt(+!m38y9iq11w+61n=t7asziels4c1$_lu-7jlut-2fvkjg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com', '127.0.0.1', 'localhost'] #允許任何來自 .onrender.com 的網域請求
 
 
 
