@@ -23,6 +23,15 @@
 
 ---
 
+🧠 模型簡介
+模型使用 Scikit-learn 建立的 線性回歸模型
+
+訓練資料為模擬的銷售數據，包含自然銷售與兩種行銷活動
+
+模型經評估，R² 分數為 0.92，具良好擬合度與預測效能
+
+---
+
 ## ⚙️ 使用技術
 
 - Python 3.11
@@ -31,7 +40,7 @@
 - Scikit-learn 1.6
 - Gunicorn (Production Server)
 - Render 雲端部署
-- Docker 打包（本地測試）
+- Docker （本地測試打包）
 - HTML + CSS + JavaScript （前端表單）
 
 ---
