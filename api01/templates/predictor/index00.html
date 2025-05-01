@@ -30,7 +30,6 @@
             border-radius: 12px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
-            margin-bottom: 30px; /* 增加與名片資訊區塊的間距 */
         }
 
         label {
@@ -69,65 +68,6 @@
             font-size: 20px;
             color: #1a73e8;
         }
-
-        .contact-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px 30px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .contact-card h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .contact-card p {
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        .contact-card ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 15px;
-        }
-
-        .contact-card li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        .contact-card li:last-child {
-            margin-right: 0;
-        }
-
-        .contact-card a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-
-        .contact-card a:hover {
-            text-decoration: underline;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .skill {
-            background-color: #e0f2f7;
-            color: #03a9f4;
-            border-radius: 5px;
-            padding: 5px 10px;
-            margin: 5px;
-            font-size: 0.9em;
-        }
     </style>
 </head>
 <body>
@@ -149,42 +89,9 @@
 
     <h2 id="result"></h2>
 
-    <div class="contact-card">
-        <h2>CCYu</h2>
-        <p><strong>職稱：</strong> Freelancer</p>
-        <p><strong>Email：</strong> <a href="mailto:kenjo0530@yahoo.com.tw">kenjo0530@yahoo.com.tw</a></p>
-        <p><strong>電話：</strong> +886-912-345-678</p>
-        <h3>技能</h3>
-        <div class="skills-list">
-            {% for skill in skills %}
-                <span class="skill">{{ skill }}</span>
-            {% endfor %}
-        </div>
-        <h3>連結</h3>
-        <ul>
-            <li><a href="{{ link.LinkedIn }}" target="_blank">LinkedIn</a></li>
-            <li><a href="{{ link.Portfolio }}" target="_blank">Portfolio</a></li>
-            <li><a href="{{ link.GitHub }}" target="_blank">GitHub</a></li>
-        </ul>
-    </div>
-
     <script>
         const form = document.getElementById('predict-form');
         const result = document.getElementById('result');
-
-        // JavaScript 物件來存放名片資訊 (如果你需要在前端操作這些資料)
-        const contactInfo = {
-            name: "{{ name }}",
-            title: "{{ title }}",
-            email: "{{ email }}",
-            phone: "{{ phone }}",
-            skills: [{% for skill in skills %}"{{ skill }}"{% if not forloop.last %},{% endif %}{% endfor %}] || [],
-            link: {
-                LinkedIn: "{{ link.LinkedIn }}",
-                Portfolio: "{{ link.Portfolio }}",
-                GitHub: "{{ link.GitHub }}"
-            }
-        };
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault(); // 不刷新頁面
@@ -194,7 +101,7 @@
             const b_campaign = document.getElementById('b_campaign').value;
 
             try {
-                const response = await fetch('/api/predict/', {  // 確保這裡的路徑是 '/api/predict/'
+                const response = await fetch('/api/predict/', {  // 相對路徑：本地和Render都適用
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -217,9 +124,6 @@
                 result.innerText = `發生錯誤：${error.message}`;
             }
         });
-
-        // 你可以在這裡使用 contactInfo 物件來操作名片資料
-        // 例如：console.log(contactInfo.name);
     </script>
 </body>
 </html>

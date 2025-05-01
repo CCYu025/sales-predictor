@@ -1,5 +1,3 @@
-
-
 # 載入 Python 庫
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -19,7 +17,25 @@ MODEL_R2 = 0.92  # <--- 這個可以改成你自己模型的 R²值
 
 # 加這個：負責顯示網頁
 def index(request):
-    return render(request, 'predictor/index.html')
+    contact_info = {
+        "name": "CCYu",
+        "title": "Freelancer",
+        "email": "kenjo0530@yahoo.com.tw",
+        "phone": "+886-912-345-678",
+        "skills": [
+            "Python",
+            "Django REST API",
+            "Data Analysis",
+            "Machine Learning",
+            "Project Management"
+        ],
+        "link": {
+            "LinkedIn": "https://www.linkedin.com/in/ccyu",
+            "Portfolio": "https://your-portfolio-site.com",
+            "GitHub": "https://github.com/ccyu-dev"
+        }
+    }
+    return render(request, 'predictor/index.html', {'skills': contact_info['skills'], 'link': contact_info['link'], 'name': contact_info['name'], 'title': contact_info['title'], 'email': contact_info['email'], 'phone': contact_info['phone']})
 
 
 class PredictView(APIView):
